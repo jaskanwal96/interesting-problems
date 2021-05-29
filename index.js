@@ -13,12 +13,15 @@
 // indexing).
 
 const RowWithMax1s = require('./rowWithMax1s');
+const maxHeight = require('./findMaxHeight3d');
 
 let solution = new RowWithMax1s();
-let testArr = [
-    [0, 1, 1, 1],
-    [0, 0, 0, 1],
-    [1, 1, 1, 1],
-    [0, 0, 0, 1]
-]
-console.log(solution.rowWithMax1s(testArr, 4, 4));
+// let testArr = [
+//     [0, 1, 1, 1],
+//     [0, 0, 0, 1],
+//     [1, 1, 1, 1],
+//     [0, 0, 0, 1]
+// ]
+// console.log(solution.rowWithMax1s(testArr, 4, 4));
+let height = solution.maxHeight([4, 1, 4, 10], [6, 2, 5, 12], [7, 3, 6, 32], 4);
+console.log(height);
