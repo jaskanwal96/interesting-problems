@@ -1,35 +1,40 @@
 
-// let start = Date.now();
+// Comparison between recursive and dynamic solution for the fibonacci series
 
-// function fib(n) {
-//     if (n <= 0) return 0;
-//     if (n <= 2) return 1;
-//     return fib(n - 1) + fib(n -2);
-// }
-// console.log(fib(44));
+let start = Date.now();
 
-// console.log((Date.now() - start) / 1000);
+function fib(n) {
+    if (n <= 0) return 0;
+    if (n <= 2) return 1;
+    return fib(n - 1) + fib(n -2);
+}
+console.log(fib(44));
+
+console.log('Time taken for the program to run without DP',(Date.now() - start) / 1000);
 
 // This took 7 seconds for the code to find the 44th element
 
 // Lets Combine Closures and Dynamic Programming
 
-let start = Date.now();
-function outer(n) {
-    let dp = new Array(n + 1).fill(-1);
+start = Date.now();
+function outer() {
+    dp = {};
     function fib(n) {
         if (n <= 0) return 0;
         if (n <= 2) return 1;
-        if (dp[n] != -1) return dp[n];
+        if (dp[n] != undefined) return dp[n];
         dp[n] =  fib(n - 1) + fib(n - 2);
         return dp[n];
     }
-    return fib;
+    return {fib, dp};
 }
-myFib = outer(100);
-console.log(myFib(100));
+const myOuter = outer();
+const myFib = myOuter.fib;
+console.log(myFib(44));
 
-console.log((Date.now() - start) / 1000);
-
-// 354224848179262000000
-// This code took 0.01 to find 100th Fibonachi Element
+console.log('Time taken for the program to run with DP:', (Date.now() - start) / 1000);
+// Output
+// 701408733
+// Time taken for the program to run without DP 10.522
+// 701408733
+// Time taken for the program to run with DP: 0.02
